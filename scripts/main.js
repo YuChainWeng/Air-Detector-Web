@@ -1,12 +1,12 @@
-var dataPoints = Array.from({length: 10}, (_, i) => {
+var dataPoints = Array.from({length: 60}, (_, i) => {
     var date = new Date();
-    date.setMinutes(date.getMinutes() - (10 - i));
+    date.setSeconds(date.getSeconds() - (60 - i));
     return { x: date, y: 0 };
   });
 
-var dataPoints2 = Array.from({length: 10}, (_, i) => {
+var dataPoints2 = Array.from({length: 60}, (_, i) => {
     var date = new Date();
-    date.setMinutes(date.getMinutes() - (10 - i));
+    date.setSeconds(date.getSeconds() - (60 - i));
     return { x: date, y: 0 };
   });
 
@@ -38,13 +38,13 @@ window.onload = function () {
         dataPoints.push({ x: currentDate, y: Math.random() * 1000 });
     
         // Remove the oldest data point if there are more than 12 data points
-        if (dataPoints.length > 12) {
+        if (dataPoints.length > 62) {
           dataPoints.shift();
         }
     
         // Update the chart
         chart.render();
-      }, 60000); // Update every minute
+      }, 1000); // Update every minute
 
       var chart2 = new CanvasJS.Chart("chartContainer2",
       {
@@ -70,14 +70,14 @@ window.onload = function () {
         var currentDate = new Date();
     
         // Add a new data point
-        dataPoints2.push({ x: currentDate, y: Math.random()  });
+        dataPoints2.push({ x: currentDate, y: Math.random()/*put the temperature here*/  });
     
         // Remove the oldest data point if there are more than 12 data points
-        if (dataPoints2.length > 12) {
+        if (dataPoints2.length > 62) {
           dataPoints2.shift();
         }
     
         // Update the chart
         chart2.render();
-    }, 60000); // Update every minute
+    }, 1000); // Update every minute
     }
