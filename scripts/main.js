@@ -11,7 +11,7 @@ var dataPoints2 = Array.from({length: 60}, (_, i) => {
   });
 
 window.onload = function () {
-    var chart = new CanvasJS.Chart("chartContainer",
+    var chart = new CanvasJS.Chart("HumiditychartContainer",
     {
       title:{
       text: "Humidity"
@@ -19,7 +19,7 @@ window.onload = function () {
       axisX: {
         interval: 1,
         intervalType: "minute",
-        valueFormatString: "HH:mm"
+        valueFormatString: "hh:mm"
       },
        data: [
       {
@@ -35,7 +35,7 @@ window.onload = function () {
         var currentDate = new Date();
     
         // Add a new data point
-        dataPoints.push({ x: currentDate, y: Math.random() * 1000 });
+        dataPoints.push({ x: currentDate, y: Math.random() * 1000 /*put the humidity here*/});
     
         // Remove the oldest data point if there are more than 12 data points
         if (dataPoints.length > 62) {
@@ -46,7 +46,7 @@ window.onload = function () {
         chart.render();
       }, 1000); // Update every minute
 
-      var chart2 = new CanvasJS.Chart("chartContainer2",
+      var chart2 = new CanvasJS.Chart("TemperaturechartContainer",
       {
         title:{
         text: "Temperature"
@@ -54,7 +54,7 @@ window.onload = function () {
         axisX: {
           interval: 1,
           intervalType: "minute",
-          valueFormatString: "HH:mm"
+          valueFormatString: "hh:mm"
         },
          data: [
         {
