@@ -10,6 +10,9 @@ var dataPoints2 = Array.from({length: 60}, (_, i) => {
     return { x: date, y: 0 };
   });
 
+var humidity = 10;
+var temperature = 10;
+
 window.onload = function () {
     var chart = new CanvasJS.Chart("HumiditychartContainer",
     {
@@ -35,7 +38,7 @@ window.onload = function () {
         var currentDate = new Date();
     
         // Add a new data point
-        dataPoints.push({ x: currentDate, y: Math.random() * 1000 /*put the humidity here*/});
+        dataPoints.push({ x: currentDate, y: humidity/*put the humidity here*/});
     
         // Remove the oldest data point if there are more than 12 data points
         if (dataPoints.length > 62) {
@@ -70,7 +73,7 @@ window.onload = function () {
         var currentDate = new Date();
     
         // Add a new data point
-        dataPoints2.push({ x: currentDate, y: Math.random()/*put the temperature here*/  });
+        dataPoints2.push({ x: currentDate, y: temperature/*put the temperature here*/  });
     
         // Remove the oldest data point if there are more than 12 data points
         if (dataPoints2.length > 62) {
@@ -81,3 +84,44 @@ window.onload = function () {
         chart2.render();
     }, 1000); // Update every minute
     }
+
+    // Function to get current readings on the webpage when it loads for the first time
+function getReadings(){
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var myObj = JSON.parse(this.responseText);
+      console.log(myObj);
+      temperature = myObj.temperature;
+      humidity = myObj.humidity;
+    }
+  }; 
+  xhr.open("GET", "/readings", true);
+  xhr.send();
+}
+
+if (!!window.EventSource) {
+  var source = new EventSource('/events');
+  
+  source.addEventListener('open', function(e) {
+    console.log("Events Connected");
+  }, false);
+
+  source.addEventListener('error', function(e) {
+    if (e.target.readyState != EventSource.OPEN) {
+      console.log("Events Disconnected");
+    }
+  }, false);
+  
+  source.addEventListener('message', function(e) {
+    console.log("message", e.data);
+  }, false);
+  
+  source.addEventListener("new_readings", function(e) {
+    console.log("new_readings", e.data);
+    var myObj = JSON.parse(e.data);
+    console.log(myObj);
+    gaugeTemp.value = myObj.temperature;
+    gaugeHum.value = myObj.humidity;
+  }, false);
+}
