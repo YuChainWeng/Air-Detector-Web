@@ -3,6 +3,8 @@
   <head>
     <title>ESP IOT DASHBOARD</title>
     <script src="scripts/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script></head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="favicon.png">
@@ -17,7 +19,7 @@
     <div class="content">
       <div class="card-grid">
         <div class="card">
-          <div id="TemperaturechartContainer" style="position: relative;"></div>
+          <div id="TemperaturechartContainer"></div>
           <canvas id="gauge-temperature"></canvas>
         </div>
         <div class="card">
@@ -25,6 +27,12 @@
           <canvas id="gauge-humidity"></canvas>
         </div>
       </div>
+    </div>
+    <div id = "LED">
+      <input type = "radio" id = "LED_ON" class = "SW" value = "on" name = "SW">
+      <label for = "LED_ON">LED ON</label>
+      <input type = "radio" id = "LED_OFF" class = "SW" value = "off" name = "SW">
+      <label for = "LED_OFF">LED OFF</label>
     </div>
     <script src="scripts.js"></script>
   </body>

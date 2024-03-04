@@ -15,8 +15,8 @@ html {
     background-color: #0A1128;
   }
   body {  
-    background-image : url("https://static.gltjp.com/glt/prd/data/article/21000/20453/20231015_020307_a16455a9_w1920.jpg");
-    background-size : cover;
+    /*background-image : url("https://static.gltjp.com/glt/prd/data/article/21000/20453/20231015_020307_a16455a9_w1920.jpg");
+    background-size : cover;*/
     margin: 0;
   }
   .content { 
@@ -26,6 +26,7 @@ html {
     max-width: 80%; 
     min-width: 400px;
     min-height: 300px;
+    max-height: 500px;
     height: auto;
     margin: auto; 
     display: grid; 
@@ -43,3 +44,25 @@ html {
     font-weight: bold;
     color: #034078
   }
+ #LED{
+    position: absolute;
+ }
+ #TemperaturechartContainer{
+    position : relative;
+    max-width: 80%; 
+    min-width: 350px;
+    min-height: 300px;
+    height: auto;
+    margin: auto; 
+    display: grid;
+ }
+
+ #HumiditychartContainer{
+    position : relative;
+    max-width: 80%; 
+    min-width: 350px;
+    min-height: 300px;
+    height: auto;
+    margin: auto; 
+    display: grid;
+ }

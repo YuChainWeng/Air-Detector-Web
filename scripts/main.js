@@ -1,3 +1,5 @@
+window.addEventListener('load', getReadings);
+
 var dataPoints = Array.from({length: 60}, (_, i) => {
     var date = new Date();
     date.setSeconds(date.getSeconds() - (60 - i));
@@ -124,4 +126,12 @@ if (!!window.EventSource) {
     gaugeTemp.value = myObj.temperature;
     gaugeHum.value = myObj.humidity;
   }, false);
+}
+
+function LedControl(){
+  $("#LED").buttonset();
+  $(".SW").change(function(evt){
+    var state = $(this).val();
+    $.get("/sw",{led:state});
+  });
 }
