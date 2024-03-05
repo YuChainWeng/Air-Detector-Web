@@ -12,8 +12,8 @@ var dataPoints2 = Array.from({length: 60}, (_, i) => {
     return { x: date, y: 0 };
   });
 
-var humidity = 10;
-var temperature = 10;
+var humidity = 0;
+var temperature = 0;
 
 window.onload = function () {
     var chart = new CanvasJS.Chart("HumiditychartContainer",
@@ -98,7 +98,7 @@ function getReadings(){
       humidity = myObj.humidity;
     }
   }; 
-  xhr.open("GET", "/readings", true);
+  xhr.open("GET", "http://192.168.0.6/readings", true);
   xhr.send();
 }
 
@@ -123,8 +123,8 @@ if (!!window.EventSource) {
     console.log("new_readings", e.data);
     var myObj = JSON.parse(e.data);
     console.log(myObj);
-    gaugeTemp.value = myObj.temperature;
-    gaugeHum.value = myObj.humidity;
+    temperature = myObj.temperature;
+    humidity= myObj.humidity;
   }, false);
 }
 
